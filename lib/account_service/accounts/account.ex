@@ -37,5 +37,6 @@ defmodule AccountService.Accounts.Account do
     field :validates_phone, :integer
     field :minutes_between, :integer
     has_many :users, AccountService.Accounts.User
+    has_one :map_config, AccountService.Accounts.MapConfig
   end
 end
