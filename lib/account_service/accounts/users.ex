@@ -4,13 +4,14 @@ defmodule AccountService.Users do
   alias AccountService.Repo
 
   alias AccountService.Accounts.User
-  alias AccountService.Accounts.Account
   alias AccountService.Accounts.LinkedUser
+  alias AccountService.Accounts.Group
+  alias AccountService.Accounts.UserGroup
 
   def get_user!(id) do
-    user = Repo.get(User, id) 
-    user |> Repo.preload(account: from(u in Account))
+    Repo.preload(Repo.get(User, id), [{:account, :map_config}])
     |> Repo.preload(linked_users: from(l in LinkedUser, where: ^id == l.parent_id and l.active == true))
+    |> Repo.preload(groups: from(ug in Group, join: g in UserGroup, on: g.group_id == ug.id, where: g.owner_id == ^id))
     
     # query string
     #from(u in User,join: a in assoc(u, :account), 
