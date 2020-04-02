@@ -6,6 +6,8 @@ defmodule AccountService.Accounts.User do
   schema "users" do
     belongs_to :account, AccountService.Accounts.Account, foreign_key: :account_id
     has_many :linked_users, AccountService.Accounts.LinkedUser, foreign_key: :parent_id
+    has_many :user_groups, AccountService.Accounts.UserGroup, foreign_key: :owner_id
+    has_many :groups, through: [:user_groups, :group]
     field :username, :string
     field :email, :string
     field :old_encrypted_password, :string
