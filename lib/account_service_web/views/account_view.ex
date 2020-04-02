@@ -36,4 +36,8 @@ defmodule AccountServiceWeb.AccountView do
       :force_substatus,
       :validates_phone,
       :minutes_between]
+
+  has_one :map_config,
+    serializer: AccountServiceWeb.MapConfigView,
+    include: true
 end
