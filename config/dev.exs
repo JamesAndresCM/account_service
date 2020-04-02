@@ -49,8 +49,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :account_service, AccountService.Repo,
-  username: "root",
-  password: "",
-  database: "beetrack_dev",
-  hostname: "localhost",
+  username: System.get_env("MYSQL_USER"),
+  password: System.get_env("MYSQL_ROOT_PASSWORD"),
+  database: System.get_env("MYSQL_DATABASE"),
+  hostname: System.get_env("MYSQL_HOSTNAME"),
   pool_size: 10
