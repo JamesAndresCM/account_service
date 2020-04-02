@@ -58,4 +58,8 @@ defmodule AccountServiceWeb.UserView do
     serializer: AccountServiceWeb.LinkedUserView,
     include: true,
     type: :linked_user
+  
+  has_many :groups, through: :user_groups,
+    serializer: AccountServiceWeb.GroupView,
+    include: true
 end
