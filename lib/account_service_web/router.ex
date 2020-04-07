@@ -17,5 +17,6 @@ defmodule AccountServiceWeb.Router do
   scope "/", AccountServiceWeb do
     pipe_through :api
     get "/", DefaultController, :index
+    get "/alive", DefaultController, :alive
   end
 end
